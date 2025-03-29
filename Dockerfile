@@ -20,7 +20,7 @@ RUN apt-get update && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
 
--------------
+# --------------------------------------
 #COPY --from=builder /grass/ /grass/
 
 
@@ -41,8 +41,9 @@ ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
 
+# --------------------------------------
 
----------------------------
+
 RUN mkdir -p /etc/jwm && \
     mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
     mv /grass/startapp.sh /startapp.sh && \
