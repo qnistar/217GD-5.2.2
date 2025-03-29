@@ -38,6 +38,6 @@ COPY --from=builder /grass/ /grass/
 
 RUN mkdir -p /etc/jwm && \
     mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
-    mv /grass/startapp.sh /startapp.sh && \
+    mv /grass/startapp.sh /startapp.sh #&& \
     #dpkg -i /grass/grass.deb && \
     #rm -rf /grass
