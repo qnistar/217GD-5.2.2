@@ -28,7 +28,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
+          #tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
+          tags: qnistar/217gd:5.2.2
           platforms: |
             linux/amd64
           
