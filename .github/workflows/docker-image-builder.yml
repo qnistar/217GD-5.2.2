@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/217GD:5.2.2
+          tags: ${{ secrets.DOCKER_USERNAME }}/217gd:5.2.2
           platforms: |
             linux/amd64
           
