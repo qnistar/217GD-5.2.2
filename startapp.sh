@@ -6,4 +6,4 @@ export HOME=/config
 #ls /usr/bin/grass && dpkg -i /grass/grass.deb && sleep 3s
 exec /usr/bin/grass
 
-sleep 1m ; wmctrl -r grass -b add,hidden   
+sleep 7s ; wmctrl -r grass -b add,hidden   
