@@ -29,7 +29,9 @@ jobs:
         with:
           push: true
           #tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
-          tags: qnistar/217gd:5.2.2
+          #tags: qnistar/217gd:5.2.2
+          tags: qnistar/217gd:5.1.1
+          
           platforms: |
             linux/amd64
           
