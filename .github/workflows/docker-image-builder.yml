@@ -1,8 +1,10 @@
 name: Docker Image Builder
 on:
   push:
-    branches:    
-      - main
+    #branches:    
+      #- main
+    tags:
+      - 'action*'      
   workflow_dispatch:
 
 jobs:
