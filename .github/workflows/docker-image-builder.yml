@@ -1,6 +1,6 @@
 name: Docker Image Builder
 on:
-  push:
+  #push:
     #branches:    
       #- main
 
