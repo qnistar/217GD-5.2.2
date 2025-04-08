@@ -3,8 +3,7 @@ on:
   push:
     #branches:    
       #- main
-    tags:
-      - 'action*'      
+
   workflow_dispatch:
 
 jobs:
