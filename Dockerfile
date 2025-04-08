@@ -33,7 +33,8 @@ RUN set-cont-env APP_NAME "Grass" && \
     set-cont-env APP_VERSION "5.1.1"
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl iproute2 dnsutils psmisc wmctrl xdotool git && \
+    # dnsutils psmisc git iproute2
+    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl && \ 
     apt-get autoremove -y && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
