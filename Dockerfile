@@ -1,5 +1,8 @@
-#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder
+FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
+
+#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
+#grass-로그인창 나옴!!!
+
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests ca-certificates curl
@@ -18,8 +21,8 @@ ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
 
-#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1
+FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
+#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1
 #LABEL org.opencontainers.image.authors="217heidai@gmail.com"
 
 ENV KEEP_APP_RUNNING=1
