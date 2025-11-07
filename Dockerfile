@@ -15,8 +15,9 @@ RUN chmod +x /grass/startapp.sh
 COPY main-window-selection.jwmrc /grass/main-window-selection.jwmrc
 
 #ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.2.2_amd64.deb
-ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.1.1_amd64.deb
+#ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.1.1_amd64.deb
 #ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.3.1_amd64.deb
+ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v5.7.1/Grass_5.7.1_amd64.deb
 # =========================================================================================================
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
@@ -35,8 +36,9 @@ ENV WEB_AUTHENTICATION_PASSWORD=grass
 
 RUN set-cont-env APP_NAME "Grass" && \
     #set-cont-env APP_VERSION "5.2.2"
-    set-cont-env APP_VERSION "5.1.1"
+    #set-cont-env APP_VERSION "5.1.1"
     #set-cont-env APP_VERSION "5.3.1"
+    set-cont-env APP_VERSION "5.7.1"
     # =========================================================================================================
     
 RUN apt-get update && \
