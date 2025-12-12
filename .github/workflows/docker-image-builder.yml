@@ -34,7 +34,8 @@ jobs:
           #tags: qnistar/217gd:5.1.1_ubuntu-22.04-v4.7.1
           #tags: qnistar/217gd:5.1.1
           #tags: qnistar/217gd:5.3.1
-          tags: qnistar/217gd:5.7.1
+          #tags: qnistar/217gd:5.7.1
+          tags: qnistar/217gd:6.1.2
           # =========================================================================================================
           
           platforms: |
