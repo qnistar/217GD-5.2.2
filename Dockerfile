@@ -67,3 +67,6 @@ RUN mkdir -p /etc/jwm && \
     mv /grass/wmctrl_retry.sh /wmctrl_retry.sh && \
     dpkg -i /grass/grass.deb && \
     rm -rf /grass
+
+RUN chmod +x /startapp.sh
+ENTRYPOINT ["/startapp.sh"]    
