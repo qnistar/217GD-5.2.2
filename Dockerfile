@@ -28,6 +28,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xdotool \
     wmctrl \
     procps \
+    libgtk-3-0 \
+    libglib2.0-0 \
+    libx11-6 \
+    libxrandr2 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxinerama1 \
+    libxi6 \
+    libpangocairo-1.0-0 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libwebkit2gtk-4.1-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Grass 설치 파일 다운로드 및 설치
