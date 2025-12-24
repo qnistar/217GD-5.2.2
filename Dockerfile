@@ -1,4 +1,6 @@
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
+#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
+FROM ubuntu:22.04
+#FROM linuxserver/xvfb:ubuntunoble
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
 #grass-로그인창 나옴!!!
@@ -26,31 +28,33 @@ ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.
 # =========================================================================================================
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
+FROM ubuntu:22.04
+#FROM linuxserver/xvfb:ubuntunoble
 
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
+#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1
 #LABEL org.opencontainers.image.authors="217heidai@gmail.com"
 
-ENV KEEP_APP_RUNNING=1
+###ENV KEEP_APP_RUNNING=1
 # jlesage/baseimage-gui:ubuntu-22.04-v4.6 报错：Could not create surfaceless EGL display: EGL_NOT_INITIALIZED，待jlesage/baseimage-gui修复
 # jlesage/baseimage-gui:ubuntu-22.04-v4.5 不支持 web auth
-ENV SECURE_CONNECTION=1
-ENV WEB_AUTHENTICATION=1
-ENV WEB_AUTHENTICATION_USERNAME=grass
-ENV WEB_AUTHENTICATION_PASSWORD=grass
+###ENV SECURE_CONNECTION=1
+###ENV WEB_AUTHENTICATION=1
+###ENV WEB_AUTHENTICATION_USERNAME=grass
+###ENV WEB_AUTHENTICATION_PASSWORD=grass
 
-RUN set-cont-env APP_NAME "Grass" && \
+###RUN set-cont-env APP_NAME "Grass" && \
     #set-cont-env APP_VERSION "5.2.2"
     #set-cont-env APP_VERSION "5.1.1"
     #set-cont-env APP_VERSION "5.3.1"
     #set-cont-env APP_VERSION "5.7.1"
     #set-cont-env APP_VERSION "6.1.2"
-    set-cont-env APP_VERSION "xvfb_6.1.2"
+    ###set-cont-env APP_VERSION "xvfb_6.1.2"
     # =========================================================================================================
     
 RUN apt-get update && \
     # dnsutils psmisc git iproute2
-    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl && \ 
+    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl xvfb openbox xauth procps && \ 
     apt-get autoremove -y && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
