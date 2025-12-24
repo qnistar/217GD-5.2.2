@@ -8,8 +8,9 @@ export HOME=/config
 XVFB_DISPLAY=":99"
 XAUTH_FILE="/tmp/.Xauthority_${XVFB_DISPLAY}"
 
+#xvfb-run -a --auth {XAUTH_FILE} -n 99 -s "-screen 0 1024x768x24" /bin/bash -c "grass --disable-gpu --disable-software-rasterizer --no-sandbox ; openbox "
 
-nohup xvfb-run -a --auth {XAUTH_FILE} -n 99 -s "-screen 0 1024x768x24" /bin/bash -c "grass --disable-gpu --disable-software-rasterizer --no-sandbox > /dev/null 2>&1 & openbox ; " > /dev/null 2>&1 &
+#nohup xvfb-run -a --auth {XAUTH_FILE} -n 99 -s "-screen 0 1024x768x24" /bin/bash -c "grass --disable-gpu --disable-software-rasterizer --no-sandbox > /dev/null 2>&1 & openbox ; " > /dev/null 2>&1 &
 
 #nohup xvfb-run -a --auth $XAUTH_FILE -n 99 -s '-screen 0 1024x768x24' \
 #    /bin/bash -c " \
