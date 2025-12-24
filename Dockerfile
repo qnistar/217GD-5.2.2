@@ -44,7 +44,8 @@ RUN set-cont-env APP_NAME "Grass" && \
     #set-cont-env APP_VERSION "5.1.1"
     #set-cont-env APP_VERSION "5.3.1"
     #set-cont-env APP_VERSION "5.7.1"
-    set-cont-env APP_VERSION "6.1.2"
+    #set-cont-env APP_VERSION "6.1.2"
+    set-cont-env APP_VERSION "xvfb_6.1.2"
     # =========================================================================================================
     
 RUN apt-get update && \
