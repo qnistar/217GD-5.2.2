@@ -7,6 +7,11 @@ ENV DISPLAY=:99
 # 필수 패키지 설치 (의존성 강화)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
+    dbus-x11 \
+    at-spi2-core \
+    fonts-liberation \
+    libgl1-mesa-dri \
+    libgl1-mesa-glx \
     curl \
     xvfb \
     openbox \
