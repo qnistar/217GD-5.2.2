@@ -46,7 +46,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Grass 설치 파일 다운로드 및 설치
 ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
 RUN curl -L ${APP_URL} -o /tmp/grass.deb && \
-    dpkg -i /tmp/grass.deb || apt-get install -f -y && \
+    apt-get update && dpkg -i /tmp/grass.deb || apt-get install -f -y && \    
+    apt-get clean && rm -rf /var/lib/apt/lists/* && \
     rm /tmp/grass.deb
 
 # 설정 파일 및 스크립트 복사
