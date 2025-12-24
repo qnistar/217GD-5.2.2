@@ -21,6 +21,11 @@ nohup xvfb-run -a --auth $XAUTH_FILE -n 99 -s '-screen 0 1024x768x24' \
 #xvfb-run -a --auth "$XAUTH_FILE" -n 99 -s "-screen 0 1024x768x24" /bin/bash -c 'grass --disable-gpu --disable-software-rasterizer --no-sandbox & openbox' &
 
 
+
+#sleep 5
+#/wmctrl_retry.sh
+
+
 # 4. 컨테이너 유지
 echo "Container is running..."
 tail -f /dev/null
@@ -41,8 +46,8 @@ tail -f /dev/null
 #/usr/bin/grass --no-sandbox &
 
 # 4. wmctrl 등을 이용한 추가 스크립트 실행 (필요한 경우)
-sleep 5
-/wmctrl_retry.sh
+#sleep 5
+#/wmctrl_retry.sh
 
 # 5. 프로세스가 종료되지 않도록 유지
 #wait
