@@ -16,7 +16,7 @@ export XAUTHORITY="${XAUTH_FILE}"
 ############################################
 MAX_RETRIES=5
 DELAY_SECONDS=10
-SEARCH_STRING="grass"
+SEARCH_STRING="Grass"
 
 echo
 echo "[ wmctrl -l ] = 실행"
@@ -54,7 +54,7 @@ for ((attempt=1; attempt<=MAX_RETRIES; attempt++)); do
         echo "------------------------------"
         echo "창 숨기기"
 
-        COMMAND_HIDE="wmctrl -r 'grass' -b add,hidden"
+        COMMAND_HIDE="wmctrl -r 'Grass' -b add,hidden"   # 다시 보이게 == wmctrl -r 'Grass' -b remove,hidden
         HIDE_OUTPUT=$(eval ${COMMAND_HIDE} 2>&1)
         RET=$?
 
