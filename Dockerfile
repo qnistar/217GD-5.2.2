@@ -2,9 +2,16 @@
 #FROM ubuntu:22.04 AS builder 
 #FROM linuxserver/xvfb:ubuntunoble AS builder 
 
+# Xvfb 이미지를 'xvfb'라는 이름의 스테이지로 가져옵니다.
 FROM lscr.io/linuxserver/xvfb:ubuntunoble AS xvfb
-#FROM ghcr.io/linuxserver/baseimage-selkies:alpine322
+
+# 애플리케이션을 빌드할 기본 이미지를 선택합니다 (예: 다른 Ubuntu noble 이미지).
+# 이 이미지는 LinuxServer.io의 기본 이미지를 사용하는 것이 좋습니다.
+FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble 
+
+# Xvfb 스테이지에서 필요한 Xvfb 바이너리 및 라이브러리를 최종 이미지로 복사합니다.
 COPY --from=xvfb / /
+
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
 #grass-로그인창 나옴!!!
@@ -35,8 +42,14 @@ RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 #FROM ubuntu:22.04
 #FROM linuxserver/xvfb:ubuntunoble
 
+# Xvfb 이미지를 'xvfb'라는 이름의 스테이지로 가져옵니다.
 FROM lscr.io/linuxserver/xvfb:ubuntunoble
-#FROM ghcr.io/linuxserver/baseimage-selkies:alpine322
+
+# 애플리케이션을 빌드할 기본 이미지를 선택합니다 (예: 다른 Ubuntu noble 이미지).
+# 이 이미지는 LinuxServer.io의 기본 이미지를 사용하는 것이 좋습니다.
+FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble 
+
+# Xvfb 스테이지에서 필요한 Xvfb 바이너리 및 라이브러리를 최종 이미지로 복사합니다.
 COPY --from=xvfb / /
 
 
