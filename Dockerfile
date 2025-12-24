@@ -12,6 +12,10 @@ RUN mkdir -p /grass
 COPY startapp.sh /grass/startapp.sh
 RUN chmod +x /grass/startapp.sh
 
+COPY wmctrl_retry.sh /grass/wmctrl_retry.sh
+RUN chmod +x /grass/wmctrl_retry.sh
+
+
 COPY main-window-selection.jwmrc /grass/main-window-selection.jwmrc
 
 #ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.2.2_amd64.deb
@@ -55,5 +59,6 @@ COPY --from=builder /grass/ /grass/
 RUN mkdir -p /etc/jwm && \
     mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
     mv /grass/startapp.sh /startapp.sh && \
+    mv /grass/wmctrl_retry.sh /wmctrl_retry.sh && \
     dpkg -i /grass/grass.deb && \
     rm -rf /grass
