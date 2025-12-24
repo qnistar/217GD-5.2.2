@@ -1,6 +1,6 @@
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
-FROM ubuntu:22.04 AS builder 
-#FROM linuxserver/xvfb:ubuntunoble AS builder 
+#FROM ubuntu:22.04 AS builder 
+FROM linuxserver/xvfb:ubuntunoble AS builder 
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
 #grass-로그인창 나옴!!!
@@ -54,7 +54,7 @@ FROM ubuntu:22.04
     
 RUN apt-get update && \
     # dnsutils psmisc git iproute2
-    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl xvfb openbox xauth procps && \
+    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl xvfb openbox xauth procps dbus-x11 fonts-liberation libgl1-mesa-dri libgl1-mesa-glx && \
     apt-get autoremove -y && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
@@ -62,7 +62,7 @@ RUN apt-get update && \
 COPY --from=builder /grass/ /grass/
 
 RUN mkdir -p /etc/jwm && \
-    mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
+    #mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
     mv /grass/startapp.sh /startapp.sh && \
     mv /grass/wmctrl_retry.sh /wmctrl_retry.sh && \
     dpkg -i /grass/grass.deb && \
