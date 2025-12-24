@@ -54,7 +54,7 @@ FROM ubuntu:22.04
     
 RUN apt-get update && \
     # dnsutils psmisc git iproute2
-    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl xvfb openbox xauth procps && \ 
+    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl xvfb openbox xauth procps && \
     apt-get autoremove -y && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
@@ -69,4 +69,5 @@ RUN mkdir -p /etc/jwm && \
     rm -rf /grass
 
 RUN chmod +x /startapp.sh
-ENTRYPOINT ["/startapp.sh"]    
+CMD ["/startapp.sh"]
+#ENTRYPOINT ["/startapp.sh"]    
