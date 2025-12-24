@@ -26,6 +26,7 @@ RUN apt-get update && \
     procps \
     dbus-x11 \
     fonts-liberation \
+    
     # 22.04 전용
     #libgl1-mesa-dri \
     #libgl1-mesa-glx && \
