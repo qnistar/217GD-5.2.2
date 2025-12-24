@@ -2,8 +2,9 @@
 
 
 # 1. 홈 디렉토리 설정 (설정값 저장 위치)
-export HOME=/config
 mkdir -p /config
+export HOME=/config
+
 
 
 # 4. 컨테이너 유지
