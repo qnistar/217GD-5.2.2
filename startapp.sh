@@ -1,27 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 export LC_ALL=C
 export HOME=/config
+export DISPLAY=:99
 
-echo "[+] Starting Openbox"
-openbox-session &
-
+Xvfb :99 -screen 0 1280x720x24 &
 sleep 2
 
-echo "[+] Starting Grass"
-grass \
-  --disable-gpu \
-  --disable-software-rasterizer \
-  --disable-extensions \
-  --hide-scrollbars \
-  --mute-audio \
-  --no-sandbox &
+openbox &
+sleep 1
 
-sleep 5
+exec /usr/bin/grass
 
-echo "[+] Applying window rules"
- /wmctrl_retry.sh
-
-echo "[+] Running..."
-wait
