@@ -28,8 +28,8 @@ ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.
 # =========================================================================================================
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
-FROM ubuntu:22.04
-#FROM linuxserver/xvfb:ubuntunoble
+#FROM ubuntu:22.04
+FROM linuxserver/xvfb:ubuntunoble
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1
