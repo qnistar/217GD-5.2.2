@@ -26,8 +26,14 @@ RUN apt-get update && \
     procps \
     dbus-x11 \
     fonts-liberation \
-    libgl1-mesa-dri \
-    libgl1-mesa-glx && \
+    # 22.04 전용
+    #libgl1-mesa-dri \
+    #libgl1-mesa-glx && \
+
+    # 24.04 >>> 아래 두 패키지가 libgl1-mesa-glx를 대체합니다.
+    libgl1 \
+    libglx-mesa0 && \
+    
     # 패키지 정리
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
