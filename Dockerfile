@@ -1,6 +1,10 @@
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
 #FROM ubuntu:22.04 AS builder 
-FROM linuxserver/xvfb:ubuntunoble AS builder 
+#FROM linuxserver/xvfb:ubuntunoble AS builder 
+
+FROM lscr.io/linuxserver/xvfb:ubuntunoble AS xvfb
+#FROM ghcr.io/linuxserver/baseimage-selkies:alpine322
+COPY --from=xvfb / /
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
 #grass-로그인창 나옴!!!
@@ -29,7 +33,12 @@ ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
 #FROM ubuntu:22.04
-FROM linuxserver/xvfb:ubuntunoble
+#FROM linuxserver/xvfb:ubuntunoble
+
+FROM lscr.io/linuxserver/xvfb:ubuntunoble
+#FROM ghcr.io/linuxserver/baseimage-selkies:alpine322
+COPY --from=xvfb / /
+
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1
