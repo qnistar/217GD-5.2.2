@@ -9,12 +9,7 @@ export DISPLAY=:99
 export HOME=/config
 
 
-# Xvfb 실행
-Xvfb :99 -screen 0 1024x768x24 &
 
-# Openbox 실행
-openbox-session &
-
-
-# GRASS 실행 (절대 경로)
-/usr/bin/grass "$@"
+# 4. 컨테이너 유지
+echo "Container is running..."
+tail -f /dev/null
