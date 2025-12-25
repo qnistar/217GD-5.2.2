@@ -20,12 +20,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xdotool wmctrl xauth procps scrot \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# GRASS 다운로드 및 설치
+# GRASS 다운로드
 RUN mkdir -p /grass
 ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
-RUN curl -sS -L ${APP_URL} -o /grass/grass.deb && \
-    dpkg -i /grass/grass.deb || apt-get install -f -y && \
-    rm -f /grass/grass.deb
+RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
+
+# GRASS 설치
+RUN dpkg -i /grass/grass.deb
+RUN apt-get update && apt-get install -f -y
+#RUN rm -f /grass/grass.deb
+#RUN which grass && grass --version
+
 
 # Openbox 설정 폴더 생성
 #RUN mkdir -p /root/.config/openbox
