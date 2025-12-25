@@ -5,12 +5,12 @@ export LC_ALL=C
 export HOME=/config
 
 
-mv /etc/services.d/nginx.disabled /etc/services.d/nginx
+# mv /etc/services.d/nginx.disabled /etc/services.d/nginx
 
 exec /usr/bin/grass
 
-mv /etc/services.d/nginx /etc/services.d/nginx.disabled
-pkill -9 -f nginx
+# mv /etc/services.d/nginx /etc/services.d/nginx.disabled
+# pkill -9 -f nginx
 # ls -al /etc/services.d
 
 # 4. 컨테이너 유지
