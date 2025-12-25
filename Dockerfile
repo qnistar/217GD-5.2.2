@@ -46,7 +46,7 @@ RUN apt-get update && \
         libatk-bridge2.0-0 \
         libx11-xcb1 \
         libgbm1 \
-        libasound2 \
+        libasound2t64 \
         libxcomposite1 \
         libxdamage1 \
         libxrandr2
