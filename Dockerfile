@@ -7,7 +7,13 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=C.UTF-8 \
     DISPLAY=:99 \
     HOME=/config
-
+    
+# Dockerfile에서 ca-certificates 설치
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl \
+    && update-ca-certificates
+    
+    
 # 필수 패키지 설치
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash coreutils curl dash dpkg file findutils grep gzip hostname locales lsb-release sudo tzdata \
@@ -26,8 +32,8 @@ ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
 # GRASS 설치
-RUN dpkg -i /grass/grass.deb
-#RUN dpkg -i /grass/grass.deb || apt-get install -fy
+#RUN dpkg -i /grass/grass.deb
+RUN dpkg -i /grass/grass.deb || apt-get install -fy
 RUN apt-get update && apt-get install -f -y
 #RUN rm -f /grass/grass.deb
 #RUN which grass && grass --version
