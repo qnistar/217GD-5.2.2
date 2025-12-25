@@ -37,7 +37,8 @@ jobs:
           #tags: qnistar/217gd:5.7.1
           #tags: qnistar/217gd:6.1.2
           #tags: qnistar/217gd:xvfb_6.1.2
-          tags: qnistar/217gd:scrot_5.1.1
+          #tags: qnistar/217gd:scrot_5.1.1
+          tags: qnistar/217gd:scrot_6.1.2
           # =========================================================================================================
           
           platforms: |
