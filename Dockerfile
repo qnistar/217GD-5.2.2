@@ -61,12 +61,12 @@ RUN mkdir -p /etc/jwm && \
     rm -rf /grass
 
 
-    # GRASS 실행용 entrypoint
-COPY move_nginx.sh /move_nginx.sh
-RUN chmod +x /move_nginx
+
+#COPY move_nginx.sh /move_nginx.sh
+#RUN chmod +x /move_nginx
 
 # 기본 명령
-ENTRYPOINT ["/move_nginx.sh"]
+#ENTRYPOINT ["/move_nginx.sh"]
 
 #CMD ["/bin/sh", "-c", "if [ -f /etc/services.d/nginx.disabled ]; then mv /etc/services.d/nginx.disabled /etc/services.d/nginx; fi && exec sleep infinity"]
 
