@@ -27,6 +27,7 @@ RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
 # GRASS 설치
 RUN dpkg -i /grass/grass.deb
+#RUN dpkg -i /grass/grass.deb || apt-get install -fy
 RUN apt-get update && apt-get install -f -y
 #RUN rm -f /grass/grass.deb
 #RUN which grass && grass --version
