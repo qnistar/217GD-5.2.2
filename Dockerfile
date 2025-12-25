@@ -45,8 +45,8 @@ ENV WEB_AUTH=0
 #ENV VNC_PASSWORD=
 #ENV ENABLE_X11=0
 #ENV ENABLE_GUI=0
-ENV WEB_LISTENING_PORT=
-ENV VNC_LISTENING_PORT=
+#ENV WEB_LISTENING_PORT=
+#ENV VNC_LISTENING_PORT=
 #ENV WEB_LISTENING_PORT=5800
 #ENV VNC_LISTENING_PORT=5900
 #ENV 
@@ -101,9 +101,9 @@ RUN mkdir -p /etc/jwm && \
 
 RUN rm -rf \
     /etc/services.d/nginx \
-    /etc/services.d/xvnc \
-    /etc/services.d/certsmonitor \
-    /etc/services.d/logmonitor \
-    /etc/services.d/logrotate
+    /etc/services.d/xvnc
+    #/etc/services.d/certsmonitor \
+    #/etc/services.d/logmonitor \
+    #/etc/services.d/logrotate
 
 
