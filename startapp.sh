@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
-#export LC_ALL="en.utf-8"
-export LC_ALL=C
+export DISPLAY=:99
 export HOME=/config
 
-#exec /usr/bin/grass
 
+  
 
 # 4. 컨테이너 유지
 echo "Container is running..."
