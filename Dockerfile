@@ -58,6 +58,9 @@ RUN apt-get update && \
 
 COPY --from=builder /grass/ /grass/
 
+RUN mv /grass/run /etc/services.d/nginx/run
+
+
 RUN mkdir -p /etc/jwm && \
     mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
     mv /grass/startapp.sh /startapp.sh && \
@@ -65,7 +68,7 @@ RUN mkdir -p /etc/jwm && \
     rm -rf /grass
 
 
-RUN mv /grass/run /etc/services.d/nginx/run
+
 
 
 #COPY move_nginx.sh /move_nginx.sh
