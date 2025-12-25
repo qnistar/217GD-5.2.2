@@ -59,8 +59,10 @@ RUN mkdir -p /etc/jwm && \
     mv /grass/startapp.sh /startapp.sh && \
     dpkg -i /grass/grass.deb && \
     rm -rf /grass
+    
+CMD ["/bin/sh", "-c", "if [ -f /etc/services.d/nginx.disabled ]; then mv /etc/services.d/nginx.disabled /etc/services.d/nginx; fi && exec sleep infinity"]
 
-CMD ["/bin/sh", "-c", "ls /etc/services.d/nginx.disabled && mv /etc/services.d/nginx.disabled /etc/services.d/nginx"]
+#CMD ["/bin/sh", "-c", "ls /etc/services.d/nginx.disabled && mv /etc/services.d/nginx.disabled /etc/services.d/nginx"]
 
 # CMD ["/bin/sh", "-c", "if [ -f /etc/services.d/nginx.disabled ]; then mv /etc/services.d/nginx.disabled /etc/services.d/nginx; fi && exec nginx -g 'daemon off;'"]
     
