@@ -1,44 +1,62 @@
 FROM ubuntu:22.04
 
-ARG DEBIAN_FRONTEND=noninteractive
-ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
-
-# HOME 경로 고정 (grass 설정/프로필 저장용)
-ENV HOME=/config
+# 환경 변수 설정
+ENV DEBIAN_FRONTEND=noninteractive
 ENV DISPLAY=:99
 
-# 필수 패키지 + GUI (xvfb / openbox / wmctrl)
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        ca-certificates \
-        wget \
-        curl \
-        xvfb \
-        openbox \
-        wmctrl \
-        xauth \
-        dbus-x11 \
-        libgtk-3-0 \
-        libnss3 \
-        libxss1 \
-        libasound2 \
-        fonts-liberation \
+# 필수 패키지 설치 (의존성 강화)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    dbus-x11 \
+    at-spi2-core \
+    fonts-liberation \
+    libgl1-mesa-dri \
+    libgl1-mesa-glx \
+    curl \
+    xvfb \
+    openbox \
+    libnss3 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libgtk-3-0 \
+    libgbm1 \
+    libasound2 \
+    libayatana-appindicator3-1 \
+    libwebkit2gtk-4.1-0 \
+    xdotool \
+    wmctrl \
+    procps \
+    libgtk-3-0 \
+    libglib2.0-0 \
+    libx11-6 \
+    libxrandr2 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxinerama1 \
+    libxi6 \
+    libpangocairo-1.0-0 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libwebkit2gtk-4.1-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# HOME 디렉토리 생성
-RUN mkdir -p /config && chmod 755 /config
+# Grass 설치 파일 다운로드 및 설치
+ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
+RUN curl -L ${APP_URL} -o /tmp/grass.deb && \
+    apt-get update && dpkg -i /tmp/grass.deb || apt-get install -f -y && \    
+    apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    ls -al
+    #rm /tmp/grass.deb
 
-# Grass 다운로드 & 설치
-WORKDIR /tmp
-RUN wget -O grass.deb "${APP_URL}" && \
-    dpkg -i grass.deb || apt-get update && apt-get install -f -y && \
-    rm -f grass.deb && \
-    rm -rf /var/lib/apt/lists/*
+# 설정 파일 및 스크립트 복사
+COPY startapp.sh /startapp.sh
+COPY wmctrl_retry.sh /wmctrl_retry.sh
 
-# Openbox 설정 (HOME=/config 기준)
-RUN mkdir -p /config/.config/openbox && \
-    echo "exec openbox-session &" > /config/.xinitrc
 
-# xvfb + openbox + grass 실행
-CMD xvfb-run -a -n 99 -s "-screen 0 1024x768x24" \
-    /bin/bash -c "export HOME=/config && openbox-session & exec /usr/bin/grass --no-sandbox"
+RUN chmod +x /startapp.sh /wmctrl_retry.sh
+
+# 실행
+ENTRYPOINT ["/startapp.sh"]
