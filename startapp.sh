@@ -4,13 +4,12 @@
 export LC_ALL=C
 export HOME=/config
 
-# exec /usr/bin/grass
+exec /usr/bin/grass
 
-exec tail -f /dev/null
 
 # 4. 컨테이너 유지
-echo "Container is running..."
-tail -f /dev/null
+#echo "Container is running..."
+#tail -f /dev/null
 
 
 #ls /usr/bin/grass && dpkg -i /grass/grass.deb && sleep 3s
