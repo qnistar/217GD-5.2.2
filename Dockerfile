@@ -59,6 +59,32 @@ RUN mkdir -p /etc/jwm && \
     rm -rf /grass
 
 
+############################################
+# 필수 GUI / 런타임 라이브러리
+############################################
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        inetutils-ping \
+        procps \
+        dbus-x11 \
+        xvfb \
+        xauth \
+        openbox \
+        wmctrl \
+        xdotool \
+        fonts-liberation \
+        libwebkit2gtk-4.1-0 \
+        libayatana-appindicator3-1 \
+        libegl-dev \
+        libgl1-mesa-dri \
+        libgl1-mesa-glx && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+
+
 
 
 
