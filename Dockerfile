@@ -28,6 +28,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
+
+# -----------------------------
+# ❌ GRASS GIS 완전 제거 + 재설치 차단
+# -----------------------------
+RUN apt-get update && \
+    apt-get remove --purge -y \
+        grass \
+        grass-core \
+        grass-gui || true && \
+    apt-get autoremove -y && \
+    apt-get autoclean && \
+    apt-mark hold grass grass-core grass-gui
+
+
+
 # GRASS 필수
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl \
