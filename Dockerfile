@@ -58,8 +58,7 @@ RUN mkdir -p /etc/jwm && \
     dpkg -i /grass/grass.deb && \
     rm -rf /grass
 
-RUN	rm -rf \
-	/etc/services.d/nginx
+
 
 
 
