@@ -53,7 +53,7 @@ ENV WEB_AUTH=0
 
 
 # nginx, vnc 포트 노출 안함
-EXPOSE 0
+#EXPOSE 0  #에러발생됨
 
 # Expose ports.
 #   - 5800: VNC web interface
