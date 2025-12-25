@@ -59,8 +59,16 @@ RUN mkdir -p /etc/jwm && \
     mv /grass/startapp.sh /startapp.sh && \
     dpkg -i /grass/grass.deb && \
     rm -rf /grass
-    
-CMD ["/bin/sh", "-c", "if [ -f /etc/services.d/nginx.disabled ]; then mv /etc/services.d/nginx.disabled /etc/services.d/nginx; fi && exec sleep infinity"]
+
+
+    # GRASS 실행용 entrypoint
+COPY move_nginx.sh /move_nginx.sh
+RUN chmod +x /move_nginx
+
+# 기본 명령
+ENTRYPOINT ["/move_nginx.sh"]
+
+#CMD ["/bin/sh", "-c", "if [ -f /etc/services.d/nginx.disabled ]; then mv /etc/services.d/nginx.disabled /etc/services.d/nginx; fi && exec sleep infinity"]
 
 #CMD ["/bin/sh", "-c", "ls /etc/services.d/nginx.disabled && mv /etc/services.d/nginx.disabled /etc/services.d/nginx"]
 
