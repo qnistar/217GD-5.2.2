@@ -47,7 +47,7 @@ RUN set-cont-env APP_NAME "Grass" && \
     
 RUN apt-get update && \
     # dnsutils psmisc git iproute2
-    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl scrot && \ 
+    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl scrot nano && \ 
     apt-get autoremove -y && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
