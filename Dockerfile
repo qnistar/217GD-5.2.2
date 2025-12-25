@@ -1,61 +1,38 @@
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
+# 베이스 이미지
+FROM ubuntu:22.04
 
-#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
-#grass-로그인창 나옴!!!
+# 환경 변수
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    DISPLAY=:99 \
+    HOME=/config
 
+# 필수 패키지 설치
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash coreutils curl dash dpkg file findutils grep gzip hostname locales lsb-release sudo tzdata \
+    fonts-dejavu-core fontconfig adwaita-icon-theme hicolor-icon-theme humanity-icon-theme \
+    xvfb x11-utils x11-xserver-utils x11-common x11proto-dev \
+    libx11-6 libx11-dev libxext6 libxrender1 libxrandr2 libxinerama1 libxcursor1 libxcomposite1 libxtst6 libxfixes3 libxi6 libxmu6 \
+    libgtk-3-0 libglib2.0-0 libcairo2 libpango-1.0-0 libgdk-pixbuf-2.0-0 libfreetype6 libjpeg-turbo8 libtiff5 \
+    libsm6 libice6 libglu1-mesa libgl1-mesa-glx \
+    openbox obconf \
+    xdotool wmctrl \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates curl
-
+# GRASS 다운로드 및 설치
 RUN mkdir -p /grass
-
-COPY startapp.sh /grass/startapp.sh
-RUN chmod +x /grass/startapp.sh
-
-COPY main-window-selection.jwmrc /grass/main-window-selection.jwmrc
-
-#ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.2.2_amd64.deb
-#ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.1.1_amd64.deb
-#ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.3.1_amd64.deb
-#ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v5.7.1/Grass_5.7.1_amd64.deb
 ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
-# =========================================================================================================
-RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
+RUN curl -sS -L ${APP_URL} -o /grass/grass.deb && \
+    dpkg -i /grass/grass.deb || apt-get install -f -y && \
+    rm -f /grass/grass.deb
 
+# Openbox 설정 폴더 생성
+RUN mkdir -p /root/.config/openbox
 
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
-#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1
-#LABEL org.opencontainers.image.authors="217heidai@gmail.com"
+# GRASS 실행용 entrypoint
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ENV KEEP_APP_RUNNING=1
-# jlesage/baseimage-gui:ubuntu-22.04-v4.6 报错：Could not create surfaceless EGL display: EGL_NOT_INITIALIZED，待jlesage/baseimage-gui修复
-# jlesage/baseimage-gui:ubuntu-22.04-v4.5 不支持 web auth
-ENV SECURE_CONNECTION=1
-ENV WEB_AUTHENTICATION=1
-ENV WEB_AUTHENTICATION_USERNAME=grass
-ENV WEB_AUTHENTICATION_PASSWORD=grass
-
-RUN set-cont-env APP_NAME "Grass" && \
-    #set-cont-env APP_VERSION "5.2.2"
-    #set-cont-env APP_VERSION "5.1.1"
-    #set-cont-env APP_VERSION "5.3.1"
-    #set-cont-env APP_VERSION "5.7.1"
-    #set-cont-env APP_VERSION "6.1.2"
-    #set-cont-env APP_VERSION "scrot_5.1.1"
-    set-cont-env APP_VERSION "scrot_6.1.2"
-    # =========================================================================================================
-    
-RUN apt-get update && \
-    # dnsutils psmisc git iproute2
-    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl scrot && \ 
-    apt-get autoremove -y && \
-    apt-get -y --purge autoremove && \
-    rm -rf /var/lib/apt/lists/*
-
-COPY --from=builder /grass/ /grass/
-
-RUN mkdir -p /etc/jwm && \
-    mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
-    mv /grass/startapp.sh /startapp.sh && \
-    dpkg -i /grass/grass.deb && \
-    rm -rf /grass
+# 기본 명령
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
