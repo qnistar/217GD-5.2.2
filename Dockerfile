@@ -15,10 +15,10 @@ RUN chmod +x /grass/startapp.sh
 COPY main-window-selection.jwmrc /grass/main-window-selection.jwmrc
 
 #ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.2.2_amd64.deb
-#ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.1.1_amd64.deb
+ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.1.1_amd64.deb
 #ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.3.1_amd64.deb
 #ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v5.7.1/Grass_5.7.1_amd64.deb
-ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
+#ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
 # =========================================================================================================
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
@@ -40,7 +40,8 @@ RUN set-cont-env APP_NAME "Grass" && \
     #set-cont-env APP_VERSION "5.1.1"
     #set-cont-env APP_VERSION "5.3.1"
     #set-cont-env APP_VERSION "5.7.1"
-    set-cont-env APP_VERSION "6.1.2"
+    #set-cont-env APP_VERSION "6.1.2"
+    set-cont-env APP_VERSION "scrot_5.1.1"
     # =========================================================================================================
     
 RUN apt-get update && \
@@ -57,35 +58,3 @@ RUN mkdir -p /etc/jwm && \
     mv /grass/startapp.sh /startapp.sh && \
     dpkg -i /grass/grass.deb && \
     rm -rf /grass
-
-
-############################################
-# 필수 GUI / 런타임 라이브러리
-############################################
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        ca-certificates \
-        curl \
-        inetutils-ping \
-        procps \
-        dbus-x11 \
-        xvfb \
-        xauth \
-        openbox \
-        wmctrl \
-        xdotool \
-        fonts-liberation \
-        libwebkit2gtk-4.1-0 \
-        libayatana-appindicator3-1 \
-        libegl-dev \
-        libgl1-mesa-dri \
-        libgl1-mesa-glx && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
-
-
-
-
-
-
-  
