@@ -4,8 +4,12 @@
 export LC_ALL=C
 export HOME=/config
 
+
+mv /etc/services.d/nginx.disabled /etc/services.d/nginx
+
 exec /usr/bin/grass
 
+mv /etc/services.d/nginx /etc/services.d/nginx.disabled
 
 # 4. 컨테이너 유지
 #echo "Container is running..."
