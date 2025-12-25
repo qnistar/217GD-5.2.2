@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgtk-3-0 libglib2.0-0 libcairo2 libpango-1.0-0 libgdk-pixbuf-2.0-0 libfreetype6 libjpeg-turbo8 libtiff5 \
     libsm6 libice6 libglu1-mesa libgl1-mesa-glx \
     openbox obconf \
-    xdotool wmctrl \
+    xdotool wmctrl xauth procps scrot \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # GRASS 다운로드 및 설치
