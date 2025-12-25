@@ -12,6 +12,10 @@ RUN mkdir -p /grass
 COPY startapp.sh /grass/startapp.sh
 RUN chmod +x /grass/startapp.sh
 
+COPY run /grass/run
+RUN chmod +x /grass/run
+
+
 COPY main-window-selection.jwmrc /grass/main-window-selection.jwmrc
 
 #ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.2.2_amd64.deb
@@ -60,6 +64,8 @@ RUN mkdir -p /etc/jwm && \
     dpkg -i /grass/grass.deb && \
     rm -rf /grass
 
+
+RUN mv /grass/run /etc/services.d/nginx/run
 
 
 #COPY move_nginx.sh /move_nginx.sh
