@@ -6,6 +6,21 @@ ENV HOME=/config
 
 ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
 
+
+# -----------------------------
+# ❌ GRASS GIS 완전 제거 + 재설치 차단
+# -----------------------------
+RUN apt-get update && \
+    apt-get remove --purge -y \
+        grass \
+        grass-core \
+        grass-gui || true && \
+    apt-get autoremove -y && \
+    apt-get autoclean && \
+    apt-mark hold grass grass-core grass-gui
+
+
+    
 # 기본 패키지 + GUI 환경
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
