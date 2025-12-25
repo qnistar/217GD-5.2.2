@@ -65,20 +65,20 @@ ENV WEB_AUTH=0
 
 # ==============================================================================
 
-ENV KEEP_APP_RUNNING=1
+###ENV KEEP_APP_RUNNING=1
 # jlesage/baseimage-gui:ubuntu-22.04-v4.6 报错：Could not create surfaceless EGL display: EGL_NOT_INITIALIZED，待jlesage/baseimage-gui修复
 # jlesage/baseimage-gui:ubuntu-22.04-v4.5 不支持 web auth
-ENV SECURE_CONNECTION=1
-ENV WEB_AUTHENTICATION=1
-ENV WEB_AUTHENTICATION_USERNAME=grass
-ENV WEB_AUTHENTICATION_PASSWORD=grass
+###ENV SECURE_CONNECTION=1
+###ENV WEB_AUTHENTICATION=1
+###ENV WEB_AUTHENTICATION_USERNAME=grass
+###ENV WEB_AUTHENTICATION_PASSWORD=grass
 
-RUN set-cont-env APP_NAME "Grass" && \
+###RUN set-cont-env APP_NAME "Grass" && \
     #set-cont-env APP_VERSION "5.2.2"
     #set-cont-env APP_VERSION "5.1.1"
     #set-cont-env APP_VERSION "5.3.1"
     #set-cont-env APP_VERSION "5.7.1"
-    set-cont-env APP_VERSION "6.1.2"
+###    set-cont-env APP_VERSION "6.1.2"
     # =========================================================================================================
     
 RUN apt-get update && \
