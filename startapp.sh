@@ -6,12 +6,7 @@ export HOME=/config
 
 # exec /usr/bin/grass
 
-rm -rf \
-  /etc/services.d/nginx \
-  /etc/services.d/xvnc \
-  /etc/services.d/certsmonitor \
-  /etc/services.d/logmonitor \
-  /etc/services.d/logrotate
+exec tail -f /dev/null
 
 # 4. 컨테이너 유지
 echo "Container is running..."
