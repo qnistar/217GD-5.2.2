@@ -26,6 +26,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xdotool wmctrl xauth procps scrot \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+
+
+# GRASS 필수
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl \
+    libappindicator3-1 libwebkit2gtk-4.1-0 \
+    gdal-bin python3-gdal \
+    libwxgtk3.0-gtk3-0v5 libwxbase3.0-0v5 \
+    libgtk-3-0 libglib2.0-0 libcairo2 \
+    fonts-dejavu-core fontconfig \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+    
 # GRASS 다운로드
 RUN mkdir -p /grass
 ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
