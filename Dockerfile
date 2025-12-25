@@ -54,8 +54,9 @@ ENV VNC_LISTENING_PORT=
 #ENV 
 
 
+
 # nginx, vnc 포트 노출 안함
-#EXPOSE 0  #에러발생됨
+#EXPOSE 0  # 0사용시 에러발생됨!
 
 # Expose ports.
 #   - 5800: VNC web interface
@@ -87,6 +88,8 @@ RUN apt-get update && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+
+
 COPY --from=builder /grass/ /grass/
 
 RUN mkdir -p /etc/jwm && \
@@ -94,3 +97,13 @@ RUN mkdir -p /etc/jwm && \
     mv /grass/startapp.sh /startapp.sh && \
     dpkg -i /grass/grass.deb && \
     rm -rf /grass
+
+
+RUN rm -rf \
+    /etc/services.d/nginx \
+    /etc/services.d/xvnc \
+    /etc/services.d/certsmonitor \
+    /etc/services.d/logmonitor \
+    /etc/services.d/logrotate
+
+
