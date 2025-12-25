@@ -28,11 +28,11 @@ RUN curl -sS -L ${APP_URL} -o /grass/grass.deb && \
     rm -f /grass/grass.deb
 
 # Openbox 설정 폴더 생성
-RUN mkdir -p /root/.config/openbox
+#RUN mkdir -p /root/.config/openbox
 
 # GRASS 실행용 entrypoint
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # 기본 명령
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
