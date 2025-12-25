@@ -4,7 +4,7 @@ set -e
 export DISPLAY=:99
 export HOME=/config
 
-
+# exec /usr/bin/grass
   
 
 # 4. 컨테이너 유지
