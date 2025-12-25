@@ -31,12 +31,38 @@ RUN apt-get update && \
 # Grass 다운로드
 RUN curl -fsSL ${APP_URL} -o /grass/grass.deb
 
-# Grass 설치 (의존성 자동 처리)
-RUN gdebi -n /grass/grass.deb && \
-    apt-get autoremove -y && \
+
+
+# ============================================================
+
+# Ayatana 대체 라이브러리
+RUN apt-get update && \
+    apt-get install -y \
+        libayatana-appindicator3-1 \
+        libayatana-indicator3-7 \
+        libindicator3-7 \
+        libnss3 \
+        libatk1.0-0 \
+        libatk-bridge2.0-0 \
+        libx11-xcb1 \
+        libgbm1 \
+        libasound2 \
+        libxcomposite1 \
+        libxdamage1 \
+        libxrandr2
+
+# Grass 설치
+RUN dpkg -i /grass/grass.deb || true && \
+    apt-get install -f -y && \
+    rm -f /grass/grass.deb && \
     apt-get clean
-    
+
+
 #RUN rm -f /grass/grass.deb
+
+# ============================================================
+
+
 
 # 시작 스크립트
 COPY startapp.sh /startapp.sh
