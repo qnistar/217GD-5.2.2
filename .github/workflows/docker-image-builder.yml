@@ -41,7 +41,8 @@ jobs:
           #tags: qnistar/217gd:scrot_6.1.2
           #tags: qnistar/217gd:TEST_6.1.2
           #tags: qnistar/217gd:nginx_6.1.2
-          tags: qnistar/217gd:6.3.2
+          #tags: qnistar/217gd:6.3.2
+          tags: qnistar/217gd:7.3.1
           # =========================================================================================================
           
           platforms: |
