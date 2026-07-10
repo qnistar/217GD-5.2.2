@@ -7,11 +7,14 @@ export HOME=/config
 
 # mv /etc/services.d/nginx.disabled /etc/services.d/nginx
 
-#
-#exec /usr/bin/grass
+# v5.1.1 ~
+exec /usr/bin/grass
+# =================================
+
 
 # v7.4.4  ubuntu24.04 (전용)
-exec /usr/bin/grass-desktop
+#exec /usr/bin/grass-desktop
+# =================================
 
 # mv /etc/services.d/nginx /etc/services.d/nginx.disabled
 # pkill -9 -f nginx
