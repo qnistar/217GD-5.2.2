@@ -24,7 +24,9 @@ COPY main-window-selection.jwmrc /grass/main-window-selection.jwmrc
 #ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v5.7.1/Grass_5.7.1_amd64.deb
 #ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.1.2/Grass_6.1.2_amd64.deb
 #ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.3.2/Grass_6.3.2_amd64.deb
-ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v7.3.1/Grass_7.3.1_amd64.deb
+#ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v7.3.1/Grass_7.3.1_amd64.deb   #### 구동실패버젼
+ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v7.4.4/grass-desktop_7.4.4_amd64.deb
+            
 # =========================================================================================================
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
@@ -50,7 +52,7 @@ RUN set-cont-env APP_NAME "Grass" && \
     #set-cont-env APP_VERSION "scrot_5.1.1"
     #set-cont-env APP_VERSION "scrot_6.1.2"
     #set-cont-env APP_VERSION "6.3.2"
-    set-cont-env APP_VERSION "7.3.1"
+    set-cont-env APP_VERSION "7.4.4"
     # =========================================================================================================
     
 RUN apt-get update && \
