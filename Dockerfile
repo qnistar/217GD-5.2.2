@@ -1,4 +1,5 @@
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
+#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
+FROM jlesage/baseimage-gui:ubuntu-24.04-v4.7.1 AS builder
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
 #grass-로그인창 나옴!!!
@@ -31,7 +32,12 @@ ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v7.4.4/grass-de
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
 
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
+#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
+
+# 2단계: 메인 실행 스테이지 (마찬가지로 ubuntu-24.04 기반으로 변경하여 GLIBC 2.39 확보)
+FROM jlesage/baseimage-gui:ubuntu-24.04-v4.7.1
+
+
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1
 #LABEL org.opencontainers.image.authors="217heidai@gmail.com"
 
@@ -56,6 +62,10 @@ RUN set-cont-env APP_NAME "Grass" && \
     # =========================================================================================================
     
 RUN apt-get update && \
+
+    # [중요] dpkg 에러 방지를 위해 전처리로 messagebus 시스템 그룹 생성   //////////  7.4.4 전용
+    groupadd -r messagebus && \
+    
     # dnsutils psmisc git iproute2
     apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl scrot nano && \ 
     apt-get autoremove -y && \
