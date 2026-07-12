@@ -56,8 +56,9 @@ jobs:
           #tags: qnistar/217gd:7.4.4
           
           #tags: qnistar/217gd:7.4.4-U24
+          tags: qnistar/217gd:7.4.4-U24.04-v4-scrot
           #tags: qnistar/217gd:5.1.1-U24
-          tags: qnistar/217gd:6.3.2-U24
+          #tags: qnistar/217gd:6.3.2-U24
           # =========================================================================================================
           
           platforms: |
