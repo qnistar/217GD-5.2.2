@@ -12,27 +12,23 @@ jobs:
 
     steps:
       - name: Set up QEMU
-        #2026-06-19 빌드시 에러 >>> v4 수정해줌
         uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
-        #2026-06-19 빌드시 에러 >>> v4 수정해줌
         uses: docker/setup-buildx-action@v4
       
       - name: Login to Docker Hub
-        #2026-06-19 빌드시 에러 >>> v4 수정해줌
         uses: docker/login-action@v4
         with:
-          #username: ${{ secrets.DOCKER_USERNAME }}
-          #password: ${{ secrets.DOCKER_PASSWORD }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        #2026-06-19 빌드시 에러 >>> v6 수정해줌
         uses: docker/build-push-action@v6
         with:
           push: true
+          platforms: linux/amd64
+          tags: qnistar/217gd:7.4.4-U22.04
           #tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
           #tags: qnistar/217gd:5.2.2
           #tags: qnistar/217gd:5.1.1_ubuntu-22.04-v4.7.1
@@ -48,27 +44,13 @@ jobs:
           #tags: qnistar/217gd:6.3.2
           #tags: qnistar/217gd:7.3.1
           #tags: qnistar/217gd:7.4.4
-          
           #tags: qnistar/217gd:7.4.4-U24
           #tags: qnistar/217gd:7.4.4-U24.04-v4-scrot
-          tags: qnistar/217gd:7.4.4-U22.04
           #tags: qnistar/217gd:5.1.1-U24
           #tags: qnistar/217gd:6.3.2-U24
-          # =========================================================================================================
-          
-          platforms: |
-            linux/amd64
           
       - name: Delete workflow runs
-        # Node 20 지원이 끊긴 구형 main 브랜치 대신 Node 24 환경이 적용된 v2 릴리스 버전을 사용합니다.
         uses: Mattraks/delete-workflow-runs@v2
         with:
           retain_days: 30
           keep_minimum_runs: 4
-
-# ------------------------------------------------------------------------------------------------ 
-# docker/build-push-action@v5 → v6 로 변경
-# actions/checkout@v3 → v4 로 변경 (사용 중이라면)
-# Mattraks/delete-workflow-runs@main → @v2 로 변경 (Node 20 경고 완벽 제거)
-# 이렇게 하면 GitHub Runner에서 발생하는 Node.js 관련 경고가 사라집니다.    
-# ------------------------------------------------------------------------------------------------
