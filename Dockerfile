@@ -1,6 +1,6 @@
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
-#FROM jlesage/baseimage-gui:ubuntu-24.04-v4.7.1 AS builder
-FROM jlesage/baseimage-gui:ubuntu-24.04-v4 AS builder
+FROM jlesage/baseimage-gui:ubuntu-24.04-v4.7.1 AS builder
+#FROM jlesage/baseimage-gui:ubuntu-24.04-v4 AS builder  #에러나타남 호환성 문제
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
 #grass-로그인창 나옴!!!
@@ -39,8 +39,8 @@ RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
 
 # 2단계: 메인 실행 스테이지 (마찬가지로 ubuntu-24.04 기반으로 변경하여 GLIBC 2.39 확보)
-#FROM jlesage/baseimage-gui:ubuntu-24.04-v4.7.1
-FROM jlesage/baseimage-gui:ubuntu-24.04-v4
+FROM jlesage/baseimage-gui:ubuntu-24.04-v4.7.1
+#FROM jlesage/baseimage-gui:ubuntu-24.04-v4
 
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1
