@@ -92,18 +92,25 @@ RUN mv /grass/run /etc/services.d/nginx/run
 
 
 # [교정 완료] 상대 경로 분기 오류 해결 및 캐시 정리 일원화
+#RUN mkdir -p /etc/jwm && \
+#    mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
+#    mv /grass/startapp.sh /startapp.sh && \
+#    # 절대 경로(/grass/grass.deb)로 명시하여 어디서든 파일 참조가 가능하게 변경
+#    apt-get install -y /grass/grass.deb || (apt-get install -f -y) && \
+#    # 설치가 완벽히 끝난 후 패키지 원본 및 불필요한 apt 인덱스 목록 삭제 (용량 최적화)
+#    rm -rf /grass && \
+#    apt-get autoremove -y && \
+#    apt-get -y --purge autoremove && \
+#    rm -rf /var/lib/apt/lists/*
+
 RUN mkdir -p /etc/jwm && \
     mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
     mv /grass/startapp.sh /startapp.sh && \
-    # 절대 경로(/grass/grass.deb)로 명시하여 어디서든 파일 참조가 가능하게 변경
     apt-get install -y /grass/grass.deb || (apt-get install -f -y) && \
-    # 설치가 완벽히 끝난 후 패키지 원본 및 불필요한 apt 인덱스 목록 삭제 (용량 최적화)
     rm -rf /grass && \
     apt-get autoremove -y && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
-
-
 
     
 
