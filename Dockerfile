@@ -97,6 +97,7 @@ RUN mkdir -p /etc/jwm && \
     mv /grass/startapp.sh /startapp.sh && \
     #dpkg -i /grass/grass.deb && \
     apt-get install -y ./grass.deb || (apt-get install -f -y) && \
+    rm -rf /var/lib/apt/lists/* && \
     rm -rf /grass
 
 
