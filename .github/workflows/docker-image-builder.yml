@@ -36,7 +36,12 @@ jobs:
       - name: Build and push
         #uses: docker/build-push-action@v5
         #2026-06-19 빌드시 에러 >>> v6 수정해줌
-        uses: docker/build-push-action@v6
+        #uses: docker/build-push-action@v6
+        
+        # 패치 버전까지 명시하거나 v6 계열의 최신 상태를 강제합니다.
+        uses: docker/build-push-action@v6.2.0 # (또는 사용 중인 주석 처리용 v6 유지)
+
+        
         with:
           push: true
           #tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
