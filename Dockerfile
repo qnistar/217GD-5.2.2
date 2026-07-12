@@ -69,22 +69,18 @@ RUN set-cont-env APP_NAME "Grass" && \
     set-cont-env APP_VERSION "7.4.4"
     # =========================================================================================================
     
-RUN apt-get update -yqq && \
-
-  # [중요] dpkg 에러 방지를 위해 전처리로 messagebus 시스템 그룹 생성 // 7.4.4 전용
+RUN # [중요] dpkg 에러 방지를 위해 전처리로 messagebus 시스템 그룹 생성 // 7.4.4 전용
     groupadd -r messagebus && \
-    
+    apt-get update -yqq && \
     # 기존 필수 패키지와 캡처용 패키지(imagemagick, x11-xserver-utils)를 한 번에 설치
     apt-get install -yqq --no-install-recommends --no-install-suggests \
         ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 \
         libegl-dev inetutils-ping curl xdotool wmctrl scrot nano \
         imagemagick x11-xserver-utils && \
-        
     # 찌꺼기 파일 및 불필요한 의존성 패키지 삭제
     apt-get autoremove -y && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
-
 
     
 
