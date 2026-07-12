@@ -1,4 +1,4 @@
-name: Docker Image Builder
+name: GRASS_2026-07-12
 on:
   #push:
     #branches:    
@@ -12,21 +12,16 @@ jobs:
 
     steps:
       - name: Set up QEMU
-        #uses: docker/setup-qemu-action@v3
         #2026-06-19 빌드시 에러 >>> v4 수정해줌
         uses: docker/setup-qemu-action@v4
-        
 
       - name: Set up Docker Buildx
-        #uses: docker/setup-buildx-action@v3
         #2026-06-19 빌드시 에러 >>> v4 수정해줌
         uses: docker/setup-buildx-action@v4
       
       - name: Login to Docker Hub
-        #uses: docker/login-action@v3
         #2026-06-19 빌드시 에러 >>> v4 수정해줌
         uses: docker/login-action@v4
-        
         with:
           #username: ${{ secrets.DOCKER_USERNAME }}
           #password: ${{ secrets.DOCKER_PASSWORD }}
@@ -34,14 +29,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        #uses: docker/build-push-action@v5
         #2026-06-19 빌드시 에러 >>> v6 수정해줌
-        #uses: docker/build-push-action@v6
-        
-        # 패치 버전까지 명시하거나 v6 계열의 최신 상태를 강제합니다.
-        uses: docker/build-push-action@v6.2.0 # (또는 사용 중인 주석 처리용 v6 유지)
-
-        
+        uses: docker/build-push-action@v6
         with:
           push: true
           #tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
@@ -71,7 +60,8 @@ jobs:
             linux/amd64
           
       - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@main
+        # Node 20 지원이 끊긴 구형 main 브랜치 대신 Node 24 환경이 적용된 v2 릴리스 버전을 사용합니다.
+        uses: Mattraks/delete-workflow-runs@v2
         with:
           retain_days: 30
           keep_minimum_runs: 4
@@ -79,5 +69,6 @@ jobs:
 # ------------------------------------------------------------------------------------------------ 
 # docker/build-push-action@v5 → v6 로 변경
 # actions/checkout@v3 → v4 로 변경 (사용 중이라면)
+# Mattraks/delete-workflow-runs@main → @v2 로 변경 (Node 20 경고 완벽 제거)
 # 이렇게 하면 GitHub Runner에서 발생하는 Node.js 관련 경고가 사라집니다.    
-# ------------------------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------------------------
