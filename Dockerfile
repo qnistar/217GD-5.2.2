@@ -62,7 +62,8 @@ RUN set-cont-env APP_NAME "Grass" && \
     #set-cont-env APP_VERSION "scrot_6.1.2"
     #set-cont-env APP_VERSION "6.3.2"
 
-    set-cont-env APP_VERSION "5.1.1"
+    #set-cont-env APP_VERSION "5.1.1"
+    set-cont-env APP_VERSION "6.3.2"
     #set-cont-env APP_VERSION "7.4.4"
     # =========================================================================================================
     
