@@ -73,13 +73,19 @@ RUN set-cont-env APP_NAME "Grass" && \
 
     
 # [수정/확인] apt-get 청소(rm -rf)는 아래에서 grass.deb 설치가 모두 끝난 후 한 번에 처리합니다.
-RUN apt-get update && \
+#RUN apt-get update && \
     # [중요] dpkg 에러 방지를 위해 전처리로 messagebus 시스템 그룹 생성   //////////  7.4.4 전용
     #groupadd -r messagebus && \
     # dnsutils psmisc git iproute2
+    #apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libwebkit2gtk-4.0-37 libegl-dev inetutils-ping curl xdotool wmctrl scrot nano
+
+
+# [수정 완료] 줄바꿈(\) 연속선상에 있던 빈 라인 및 주석 배치 수정
+RUN apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libwebkit2gtk-4.0-37 libegl-dev inetutils-ping curl xdotool wmctrl scrot nano
 
 
+    
 COPY --from=builder /grass/ /grass/
 
 RUN mv /grass/run /etc/services.d/nginx/run
