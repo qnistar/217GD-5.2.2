@@ -78,6 +78,15 @@ RUN apt-get update && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+    
+# 필수 패키지만 설치하고 apt 캐시를 삭제하여 이미지 용량 최적화
+RUN apt-get update -yqq && \
+    apt-get install -yqq --no-install-recommends \
+    scrot imagemagick x11-xserver-utils && \
+    rm -rf /var/lib/apt/lists/*
+
+
+    
 COPY --from=builder /grass/ /grass/
 
 RUN mv /grass/run /etc/services.d/nginx/run
