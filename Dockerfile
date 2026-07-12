@@ -55,6 +55,11 @@ ENV WEB_AUTHENTICATION_USERNAME=grass
 ENV WEB_AUTHENTICATION_PASSWORD=grass
 
 RUN set-cont-env APP_NAME "Grass" && \
+    set-cont-env APP_VERSION "7.4.4"
+    
+    #set-cont-env APP_VERSION "5.1.1"
+    #set-cont-env APP_VERSION "6.3.2"
+    
     #set-cont-env APP_VERSION "5.2.2"
     #set-cont-env APP_VERSION "5.1.1"
     #set-cont-env APP_VERSION "5.3.1"
@@ -64,9 +69,8 @@ RUN set-cont-env APP_NAME "Grass" && \
     #set-cont-env APP_VERSION "scrot_6.1.2"
     #set-cont-env APP_VERSION "6.3.2"
 
-    #set-cont-env APP_VERSION "5.1.1"
-    #set-cont-env APP_VERSION "6.3.2"
-    set-cont-env APP_VERSION "7.4.4"
+
+    
     # =========================================================================================================
 
 
