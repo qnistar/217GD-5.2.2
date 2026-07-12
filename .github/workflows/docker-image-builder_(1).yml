@@ -1,0 +1,78 @@
+name: Docker Image Builder
+on:
+  #push:
+    #branches:    
+      #- main
+
+  workflow_dispatch:
+
+jobs:
+  Docker_Image_Builder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        #2026-06-19 빌드시 에러 >>> v4 수정해줌
+        #uses: docker/setup-qemu-action@v4
+        
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        #2026-06-19 빌드시 에러 >>> v4 수정해줌
+        #uses: docker/setup-buildx-action@v4
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        #2026-06-19 빌드시 에러 >>> v4 수정해줌
+        #uses: docker/login-action@v4
+        
+        with:
+          #username: ${{ secrets.DOCKER_USERNAME }}
+          #password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        #2026-06-19 빌드시 에러 >>> v6 수정해줌
+        #uses: docker/build-push-action@v6
+        with:
+          push: true
+          #tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
+          #tags: qnistar/217gd:5.2.2
+          #tags: qnistar/217gd:5.1.1_ubuntu-22.04-v4.7.1
+          #tags: qnistar/217gd:5.1.1
+          #tags: qnistar/217gd:5.3.1
+          #tags: qnistar/217gd:5.7.1
+          #tags: qnistar/217gd:6.1.2
+          #tags: qnistar/217gd:xvfb_6.1.2
+          #tags: qnistar/217gd:scrot_5.1.1
+          #tags: qnistar/217gd:scrot_6.1.2
+          #tags: qnistar/217gd:TEST_6.1.2
+          #tags: qnistar/217gd:nginx_6.1.2
+          #tags: qnistar/217gd:6.3.2
+          #tags: qnistar/217gd:7.3.1
+          #tags: qnistar/217gd:7.4.4
+          
+          #tags: qnistar/217gd:7.4.4-U24
+          #tags: qnistar/217gd:7.4.4-U24.04-v4-scrot
+          tags: qnistar/217gd:7.4.4-TEST
+          #tags: qnistar/217gd:5.1.1-U24
+          #tags: qnistar/217gd:6.3.2-U24
+          # =========================================================================================================
+          
+          platforms: |
+            linux/amd64
+          
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          retain_days: 30
+          keep_minimum_runs: 4
+
+# ------------------------------------------------------------------------------------------------ 
+# docker/build-push-action@v5 → v6 로 변경
+# actions/checkout@v3 → v4 로 변경 (사용 중이라면)
+# 이렇게 하면 GitHub Runner에서 발생하는 Node.js 관련 경고가 사라집니다.    
+# ------------------------------------------------------------------------------------------------ 
