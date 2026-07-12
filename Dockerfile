@@ -27,7 +27,8 @@ COPY main-window-selection.jwmrc /grass/main-window-selection.jwmrc
 #ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.3.2/Grass_6.3.2_amd64.deb
 #ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v7.3.1/Grass_7.3.1_amd64.deb   #### 구동실패버젼
 
-ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.1.1_amd64.deb
+#ARG APP_URL=https://files.getgrass.io/file/grass-extension-upgrades/ubuntu-22.04/Grass_5.1.1_amd64.deb
+ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v6.3.2/Grass_6.3.2_amd64.deb
 #ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v7.4.4/grass-desktop_7.4.4_amd64.deb
             
 # =========================================================================================================
