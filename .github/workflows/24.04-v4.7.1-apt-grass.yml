@@ -28,7 +28,8 @@ jobs:
         with:
           push: true
           platforms: linux/amd64
-          tags: qnistar/217gd:7.4.4-U22.04
+          tags: qnistar/217gd:7.4.4-U24.04_apt-grass
+          #tags: qnistar/217gd:7.4.4-U22.04
           #tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
           #tags: qnistar/217gd:5.2.2
           #tags: qnistar/217gd:5.1.1_ubuntu-22.04-v4.7.1
