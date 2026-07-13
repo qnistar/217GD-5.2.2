@@ -1,0 +1,57 @@
+name: U26-v7.4.4
+on:
+  #push:
+    #branches:    
+      #- main
+
+  workflow_dispatch:
+
+jobs:
+  Docker_Image_Builder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          platforms: linux/amd64
+          tags: qnistar/217gd:U26-v7.4.4
+          #tags: qnistar/217gd:7.4.4-U22.04
+          #tags: ${{ secrets.DOCKERHUB_USERNAME }}/217gd:5.2.2
+          #tags: qnistar/217gd:5.2.2
+          #tags: qnistar/217gd:5.1.1_ubuntu-22.04-v4.7.1
+          #tags: qnistar/217gd:5.1.1
+          #tags: qnistar/217gd:5.3.1
+          #tags: qnistar/217gd:5.7.1
+          #tags: qnistar/217gd:6.1.2
+          #tags: qnistar/217gd:xvfb_6.1.2
+          #tags: qnistar/217gd:scrot_5.1.1
+          #tags: qnistar/217gd:scrot_6.1.2
+          #tags: qnistar/217gd:TEST_6.1.2
+          #tags: qnistar/217gd:nginx_6.1.2
+          #tags: qnistar/217gd:6.3.2
+          #tags: qnistar/217gd:7.3.1
+          #tags: qnistar/217gd:7.4.4
+          #tags: qnistar/217gd:7.4.4-U24
+          #tags: qnistar/217gd:7.4.4-U24.04-v4-scrot
+          #tags: qnistar/217gd:5.1.1-U24
+          #tags: qnistar/217gd:6.3.2-U24
+          
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          retain_days: 30
+          keep_minimum_runs: 4
