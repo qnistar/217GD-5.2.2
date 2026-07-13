@@ -1,5 +1,11 @@
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
+#========================================================================
+#               ubuntu-24.04-v4.5.3   //   apt-get install -y /grass/grass.deb || (apt-get install -f -y) && 
+#========================================================================
+
+#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3 AS builder    
 #FROM jlesage/baseimage-gui:ubuntu-24.04-v4.7.1 AS builder
+FROM jlesage/baseimage-gui:ubuntu-24.04-v4.5.3 AS builder
+
 #FROM jlesage/baseimage-gui:ubuntu-24.04-v4 AS builder  #에러나타남 호환성 문제
 
 #FROM jlesage/baseimage-gui:ubuntu-22.04-v4.7.1 AS builder   
@@ -36,10 +42,11 @@ ARG APP_URL=https://files.grass.io/file/grass-extension-upgrades/v7.4.4/grass-de
 RUN curl -sS -L ${APP_URL} -o /grass/grass.deb
 
 
-FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
+#FROM jlesage/baseimage-gui:ubuntu-22.04-v4.5.3
 
 # 2단계: 메인 실행 스테이지 (마찬가지로 ubuntu-24.04 기반으로 변경하여 GLIBC 2.39 확보)
 #FROM jlesage/baseimage-gui:ubuntu-24.04-v4.7.1
+FROM jlesage/baseimage-gui:ubuntu-24.04-v4.5.3
 #FROM jlesage/baseimage-gui:ubuntu-24.04-v4
 
 
@@ -110,13 +117,13 @@ RUN mv /grass/run /etc/services.d/nginx/run
 RUN mkdir -p /etc/jwm && \
     mv /grass/main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc && \
     mv /grass/startapp.sh /startapp.sh && \
-    apt-get install -y /grass/grass.deb || (apt-get install -f -y) && \
+    apt-get install -y /grass/grass.deb ; (apt-get install -f -y) && \
     rm -rf /grass && \
     apt-get autoremove -y && \
     apt-get -y --purge autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-    
+# apt-get install -y /grass/grass.deb || (apt-get install -f -y) && \    
 
 
 
