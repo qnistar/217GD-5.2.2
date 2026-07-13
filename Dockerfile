@@ -100,9 +100,9 @@ RUN set-cont-env APP_NAME "Grass" && \
 
 # [수정 완료] 줄바꿈(\) 연속선상에 있던 빈 라인 및 주석 배치 수정
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libwebkit2gtk-4.0-37 libegl-dev inetutils-ping curl xdotool wmctrl scrot nano
+    apt-get install -y --no-install-recommends --no-install-suggests ca-certificates libayatana-appindicator3-1 libwebkit2gtk-4.1-0 libegl-dev inetutils-ping curl xdotool wmctrl scrot nano
 
-
+# libwebkit2gtk-4.0-37   >>  22.04 전용
     
 COPY --from=builder /grass/ /grass/
 
