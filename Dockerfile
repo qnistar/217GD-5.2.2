@@ -75,6 +75,3 @@ EXPOSE 8080
 
 # 스크립트 실행
 CMD ["/start.sh"]
-
-# 스크립트 실행
-CMD ["/start.sh"]
