@@ -28,7 +28,7 @@ jobs:
         with:
 
           context: .          
-          file: 217GD-5.2.2/Dockerfile-U24-re-v5.1.1
+          file: ./217GD-5.2.2/Dockerfile-U24-re-v5.1.1
           # 사용하실 Dockerfile 파일명을 여기에 적으세요
 
           
