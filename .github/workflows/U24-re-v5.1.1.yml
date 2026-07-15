@@ -23,12 +23,22 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 디버깅: 현재 워크스페이스의 실제 경로와 파일 구조 확인
+      - name: Verify file location
+        run: |
+          pwd
+          ls -F
+
+          
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
 
           context: .          
-          file: ./217GD-5.2.2/Dockerfile-U24-re-v5.1.1
+          file: /Dockerfile-U24-re-v5.1.1
           # 사용하실 Dockerfile 파일명을 여기에 적으세요
 
           
