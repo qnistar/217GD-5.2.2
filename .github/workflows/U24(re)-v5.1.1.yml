@@ -1,4 +1,4 @@
-name: U24-v5.1.1
+name: U24(re)-v5.1.1
 on:
   #push:
     #branches:    
@@ -29,7 +29,7 @@ jobs:
 
           context: .
           
-          file: ./Dockerfile-U24-v5.1.1  
+          file: ./Dockerfile-U24(re)-v5.1.1  
           # 사용하실 Dockerfile 파일명을 여기에 적으세요
 
           
