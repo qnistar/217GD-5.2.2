@@ -27,9 +27,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
 
-          context: .
-          
-          file: ./Dockerfile-U24-re-v5.1.1
+          context: .          
+          file: Dockerfile-U24-re-v5.1.1
           # 사용하실 Dockerfile 파일명을 여기에 적으세요
 
           
